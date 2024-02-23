@@ -1,15 +1,11 @@
 import { RoomProvider } from "../liveblocks.config";
 import { ClientSideSuspense } from "@liveblocks/react";
 
-export default function Room({ roomId, children }) {
-    // if (!roomId) {
-    //     throw new Error("RoomProvider id property is required.");
-    // }
-
+export default function Room({ roomID, initialPresence, children }) {
     return (
-        <RoomProvider id={roomId} initialPresence={{}}>
-            <ClientSideSuspense fallback={<div>Loading…</div>}>
-                {children}
+        <RoomProvider id={roomID} initialPresence={{initialPresence}}>
+            <ClientSideSuspense fallback={<div>Loading… Client suspense</div>}>
+            {() => children}
             </ClientSideSuspense>
         </RoomProvider>
     );

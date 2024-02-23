@@ -19,6 +19,10 @@ const client = createClient({
 //     penColor: Color | null;
 // };
 
+// type Presence = {
+//     cursor: { x: number; y: number } | null;
+//   };
+
 // Storage represents the shared document that persists in the Room, even after
 // all Users leave. Fields under Storage typically are LiveList, LiveMap,
 // LiveObject instances, for which updates are automatically persisted and
@@ -27,6 +31,11 @@ const client = createClient({
 //     layers: LiveMap<string, LiveObject<Layer>>;
 //     layerIds: LiveList<string>;
 // };
+
+// type Storage = {
+//     // animals: LiveList<string>,
+//     // ...
+//   };
 
 // Optionally, UserMeta represents static/readonly metadata on each User, as
 // provided by your own custom auth backend (if used). Useful for data that
@@ -55,7 +64,8 @@ export const {
         useSelf,
         useStorage,
         useUpdateMyPresence,
+        useMyPresence
     },
-// } = createRoomContext<Presence, Storage /* UserMeta, RoomEvent */>(client);
+    // } = createRoomContext<Presence, Storage /* UserMeta, RoomEvent */>(client);
 } = createRoomContext(client);
 
