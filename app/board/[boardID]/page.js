@@ -1,10 +1,11 @@
 "use client";
-import Room from "../../room"; // Adjust the path if necessary
+import Room from "./room"; // Adjust the path if necessary
 import useStore from "../../store";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import Cursor from "../../ui/cursor";
 import { useMyPresence, useOthers } from "../../../liveblocks.config";
+import styles from "./page.module.css";
 
 const COLORS = [
     "#E57373",
@@ -49,7 +50,7 @@ const Board = ({ roomID }) => {
 
     return (
         <main
-            className={module.container}
+            className={styles.container}
             onPointerMove={handlePointerMove}
             onPointerLeave={() =>
                 // When the pointer goes out, set cursor to null
@@ -58,7 +59,7 @@ const Board = ({ roomID }) => {
                 })
             }
         >
-            <div className={module.text}>
+            <div className={styles.text}>
                 {cursor
                     ? `${cursor.x} × ${cursor.y}`
                     : "Move your cursor to broadcast its position to other people in the room."}
