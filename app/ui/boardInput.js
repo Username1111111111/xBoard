@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useStore from "../store";
 
 const BoardInput = () => {
@@ -10,12 +10,14 @@ const BoardInput = () => {
         (state) => state.isCurrentUserCreated
     );
     const switchIfUserCreated = useStore((state) => state.switchIfUserCreated);
+    const [boardName, setBoardName] = useState('');
 
     const handleBoardSubmit = (event) => {
         event.preventDefault();
         const boardName = event.target.boardName.value;
         const boardId = createBoard(boardName);
         addBoard(boardName, boardId);
+        setBoardName('');
     };
 
     const handleUserSubmit = (event) => {
@@ -65,6 +67,8 @@ const BoardInput = () => {
                     className="form-control"
                     id="boardName"
                     placeholder="Enter your nice board name"
+                    value={boardName} // Controlled input
+                    onChange={(e) => setBoardName(e.target.value)}
                     required
                 />
                 <button type="submit" className="btn btn-secondary">

@@ -1,8 +1,9 @@
+import styles from './boardCard.module.css';
 export default function BoardCard({handleBoardClick, handleDeletionOfBoard, board}) {
     return (
         <div
             roomId={board.id}
-            className="border-top border-left rounded list-group-item d-flex justify-content-between align-items-center m-2 pt-2 pb-2 shadow"
+            className={`boardCardContainer border-top border-left rounded list-group-item d-flex justify-content-between align-items-center m-2 pt-2 pb-2 shadow ${styles.boardCardContainer}`}
             onClick={() => handleBoardClick(board.id)}
             style={{
                 cursor: "pointer",
@@ -17,7 +18,7 @@ export default function BoardCard({handleBoardClick, handleDeletionOfBoard, boar
         >
             <button
                 type="button"
-                className="border rounded btn-close align-self-start justify-self-bottom shadow"
+                className={`border btn-close rounded align-self-start justify-self-bottom shadow ${styles.buttonHoverEffect}`}
                 aria-label="Close"
                 onClick={(event) => handleDeletionOfBoard(event, board.id)}
                 style={{
@@ -29,7 +30,7 @@ export default function BoardCard({handleBoardClick, handleDeletionOfBoard, boar
                 }}
             ></button>
             <span
-                className="rounded list-group-item-heading text-center align-self-end w-100 rounded"
+                className={`${styles.topShadow} rounded list-group-item-heading text-center align-self-end w-100 rounded`} 
                 style={{
                     position: "absolute",
                     bottom: 0,
