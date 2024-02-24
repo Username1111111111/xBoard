@@ -4,8 +4,9 @@ import useStore from "../../store";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import Cursor from "../../ui/cursor";
-import { useMyPresence, useOthers } from "../../../liveblocks.config";
+import { useMyPresence, useOthers, useStorage } from "../../../liveblocks.config";
 import styles from "./page.module.css";
+import Canvas from "../../ui/canvas";
 
 const COLORS = [
     "#E57373",
@@ -18,22 +19,32 @@ const COLORS = [
     "#7986CB",
 ];
 
-const Board = ({ roomID }) => {
+const Board = (id) => {
     const [{ cursor }, updateMyPresence] = useMyPresence();
+    // const [storage, updateMyStorage ] = useStorage();
+    // const id = useStorage((root) => root.id);
     const others = useOthers();
+
+    // const id = storage.id;
+    const initialCursorPosition = { x: 0, y: 0 };
 
     const {
         liveblocks: { enterRoom, leaveRoom },
     } = useStore();
 
     useEffect(() => {
-        if (roomID) {
-            enterRoom(roomID);
+        if (id) {
+            enterRoom(id);
             return () => {
-                leaveRoom(roomID);
+                leaveRoom(id);
             };
         }
-    }, [roomID, enterRoom, leaveRoom]);
+    }, [id, enterRoom, leaveRoom]);
+
+    
+    useEffect(() => {
+        updateMyPresence(initialCursorPosition);
+    }, [updateMyPresence]);
 
     const handlePointerMove = (event) => {
         updateMyPresence({
@@ -44,9 +55,11 @@ const Board = ({ roomID }) => {
         });
     };
 
-    if (!roomID) {
+    if (!id) {
         return <div>Loading...</div>;
     }
+
+    // const canvasModes = ['test', 'shapes'];
 
     return (
         <main
@@ -59,12 +72,7 @@ const Board = ({ roomID }) => {
                 })
             }
         >
-            <div className={styles.text}>
-                {cursor
-                    ? `${cursor.x} × ${cursor.y}`
-                    : "Move your cursor to broadcast its position to other people in the room."}
-            </div>
-
+            <Canvas className={styles.canvas} id={id} x={cursor?.x} y={cursor?.y} canvasMode={"shapes"} />
             {
                 // Iterate over other users and display a cursor based on their presence
                 others.map(({ connectionId, presence }) => {
@@ -92,8 +100,12 @@ export default function RoomInstance() {
     const roomID = params.boardID;
 
     return (
-        <Room roomID={roomID} initialPresence={{ cursor: { x: 0, y: 0 } }}>
-            <Board roomID={roomID} />
+        <Room
+            id={roomID}
+            initialPresence={{ id: roomID, cursor: { x: 0, y: 0 } }}
+            initialStorage={{id: roomID}}
+        >
+            <Board id={roomID}/>
         </Room>
     );
 }

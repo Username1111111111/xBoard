@@ -33,9 +33,8 @@ const client = createClient({
 // };
 
 // type Storage = {
-//     // animals: LiveList<string>,
-//     // ...
-//   };
+//     id: string[]
+// };
 
 // Optionally, UserMeta represents static/readonly metadata on each User, as
 // provided by your own custom auth backend (if used). Useful for data that
