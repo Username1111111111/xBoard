@@ -40,14 +40,18 @@ const useStore = create(
       currentUser: "",
 
       // Actions
-      addBoard: boardName =>
+      setBoards: boards =>
+      set(state => ({
+        boards: [
+          ...boards
+        ]
+      })),
+      addBoard: (boardName, boardId) =>
         set(state => ({
           boards: [
             ...state.boards,
             {
-              id: Math.random()
-                .toString(36)
-                .substr(2, 9),
+              id: boardId,
               name: boardName
             }
           ]
@@ -68,7 +72,6 @@ const useStore = create(
         set(state => ({
           currentUser: providedUser
         })),
-        
       // Liveblocks specific
       shapes: {},
       selectedShape: null,

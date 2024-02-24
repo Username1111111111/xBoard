@@ -59,7 +59,7 @@ const Board = (id) => {
         return <div>Loading...</div>;
     }
 
-    // const canvasModes = ['test', 'shapes'];
+    // const canvasModes = ['test', 'shapes', 'freehand'];
 
     return (
         <main
@@ -72,7 +72,7 @@ const Board = (id) => {
                 })
             }
         >
-            <Canvas className={styles.canvas} id={id} x={cursor?.x} y={cursor?.y} canvasMode={"shapes"} />
+            <Canvas className={styles.canvas} id={id} x={cursor?.x} y={cursor?.y} canvasMode={"test"} />
             {
                 // Iterate over other users and display a cursor based on their presence
                 others.map(({ connectionId, presence }) => {

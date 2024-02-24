@@ -2,7 +2,7 @@ export default function BoardCard({handleBoardClick, handleDeletionOfBoard, boar
     return (
         <div
             roomId={board.id}
-            className="border rounded list-group-item d-flex justify-content-between align-items-center m-2 pt-2 pb-2"
+            className="border-top border-left rounded list-group-item d-flex justify-content-between align-items-center m-2 pt-2 pb-2 shadow"
             onClick={() => handleBoardClick(board.id)}
             style={{
                 cursor: "pointer",
@@ -17,7 +17,7 @@ export default function BoardCard({handleBoardClick, handleDeletionOfBoard, boar
         >
             <button
                 type="button"
-                className="border rounded btn-close align-self-start justify-self-bottom"
+                className="border rounded btn-close align-self-start justify-self-bottom shadow"
                 aria-label="Close"
                 onClick={(event) => handleDeletionOfBoard(event, board.id)}
                 style={{
@@ -29,7 +29,7 @@ export default function BoardCard({handleBoardClick, handleDeletionOfBoard, boar
                 }}
             ></button>
             <span
-                className="border-top rounded list-group-item-heading text-center align-self-end w-100 rounded"
+                className="rounded list-group-item-heading text-center align-self-end w-100 rounded"
                 style={{
                     position: "absolute",
                     bottom: 0,
