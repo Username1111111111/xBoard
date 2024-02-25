@@ -71,7 +71,7 @@ const useStore = create(
         })),
         switchIfBoardCreated: () =>
         set(state => ({
-          isCurrentUserCreated: !state.isCurrentUserCreated
+          isBoardCreated: !state.isBoardCreated
         })),
       setCurrentUser: providedUser =>
         set(state => ({
