@@ -44,6 +44,7 @@ export default function BoardsList() {
             event.stopPropagation();
             removeBoard(boardId);
         } else {
+            event.stopPropagation();
             alert("Enter the name!");
         }
     }
