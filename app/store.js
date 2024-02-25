@@ -37,6 +37,7 @@ const useStore = create(
       boards: [],
       users: [],
       isCurrentUserCreated: false,
+      isBoardCreated: false,
       currentUser: "",
 
       // Actions
@@ -65,6 +66,10 @@ const useStore = create(
           users: [...state.users, username]
         })),
       switchIfUserCreated: () =>
+        set(state => ({
+          isCurrentUserCreated: !state.isCurrentUserCreated
+        })),
+        switchIfBoardCreated: () =>
         set(state => ({
           isCurrentUserCreated: !state.isCurrentUserCreated
         })),

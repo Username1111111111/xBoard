@@ -10,9 +10,12 @@ export default function BoardsList() {
     const boards = useStore((state) => state.boards);
     const setBoards = useStore((state) => state.setBoards);
     const removeBoard = useStore((state) => state.removeBoard);
+    const isCurrentUserCreated = useStore(
+        (state) => state.isCurrentUserCreated
+    );
 
     async function loadBoards() {
-        const req = new Request(`http://localhost:3000/api/getboards`, {
+        const req = new Request(`https://xboard-jz9r.onrender.com/api/getboards`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,24 +40,38 @@ export default function BoardsList() {
     }, []);
 
     function handleDeletionOfBoard(event, boardId) {
-        event.stopPropagation();
-        removeBoard(boardId);
+        if (isCurrentUserCreated) {
+            event.stopPropagation();
+            removeBoard(boardId);
+        } else {
+            alert("Enter the name!");
+        }
     }
 
     function handleBoardClick(boardId) {
-        router.push(`/board/${boardId}`); 
+        if (isCurrentUserCreated) {
+            router.push(`/board/${boardId}`);
+        } else {
+            alert("Enter the name!");
+        }
     }
 
     return (
-        <div className="list-group pl-3 pr-3" style={{ height: '100vh', overflowY: 'auto' }}>
-            {Array.isArray(boards) && boards.map((board) => (
-                <BoardCard
-                    key={board.id}
-                    handleBoardClick={() => handleBoardClick(board.id)}
-                    handleDeletionOfBoard={(event) => handleDeletionOfBoard(event, board.id)}
-                    board={board}
-                />
-            ))}
+        <div
+            className="list-group pl-3 pr-3"
+            style={{ height: "100vh", overflowY: "auto" }}
+        >
+            {Array.isArray(boards) &&
+                boards.map((board) => (
+                    <BoardCard
+                        key={board.id}
+                        handleBoardClick={() => handleBoardClick(board.id)}
+                        handleDeletionOfBoard={(event) =>
+                            handleDeletionOfBoard(event, board.id)
+                        }
+                        board={board}
+                    />
+                ))}
         </div>
     );
 }

@@ -1,21 +1,35 @@
-/* Define the hover state for the button */
 .buttonHoverEffect:hover {
-    background-color: rgb(
-        217,
-        29,
-        29
-    ) !important; /* Button background color on hover */
+    background-color: rgb(235, 24, 24) !important;
+}
+
+.buttonHoverEffect {
+    background-color: white!important;
+    opacity: 1!important;
+    position: absolute!important;
+    top: 9px!important;
+    right: 9px!important;
 }
 
 .boardCardContainer {
-    transition: transform 0.3s ease; /* Smooth transition for the transform */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-image: url(https://i.pinimg.com/564x/66/da/9c/66da9cf5b2a8b10a2dbd55bd9b8dbfbe.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 25vh;
 }
 
 .boardCardContainer:hover {
-    transform: scale(1.01); /* Increase size by 2% on hover */
+    transform: scale(1.01);
 }
 
 .topShadow {
     box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
         0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.buttonHoverEffect:hover .buttonSvg {
+    fill: white;
 }

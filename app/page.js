@@ -11,7 +11,9 @@ export default function Home() {
             </div>
             <div className="position-absolute" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <div className="w-100">
-                    <BoardInput />
+                <h1 className="text-center h1 mt-5">xBoard 🖊️✨</h1>
+                <p className="text-center mt-5 mb-5">Probably the best whiteboard on the market (c) Jason Statham</p>
+                    <BoardInput style={{ maxWidth: '100px' }}/>
                 </div>
             </div>
         </main>

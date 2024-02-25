@@ -1,0 +1,15 @@
+.namebutton {
+    background-color: rgb(156, 156, 156) !important;
+    color: rgb(255, 255, 255);
+}
+
+.namebutton:hover {
+    background-color: rgb(204, 204, 204) !important;
+    color: rgb(0, 0, 0);
+}
+
+.noFocusBorder {
+    outline: none !important;
+    box-shadow: none !important;
+    /* border-color: #ced4da !important;  */
+}
